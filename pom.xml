@@ -10,7 +10,10 @@
 
     <properties>
         <tomcat.version>8.5.38</tomcat.version>
+        <mongodb-driver-sync.version>3.11.0</mongodb-driver-sync.version>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -42,6 +45,12 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>4.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>${mongodb-driver-sync.version}</version>
         </dependency>
     </dependencies>
     <build>

@@ -1,5 +1,8 @@
 package launch;
 
+import com.google.inject.Inject;
+import com.mongodb.client.MongoClient;
+import modules.MongoModule;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
@@ -16,6 +19,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Webserver {
+
+    @Inject
+    private MongoModule db;
 
     private static File getRootFolder() {
         try {
@@ -74,6 +80,9 @@ public class Webserver {
         resources.addPreResources(resourceSet);
         ctx.setResources(resources);
         tomcat.start();
+        db.conectar();
+        MongoClient dbclient = db.getMongoClient();
+        System.out.println(dbclient.listDatabaseNames());
         tomcat.getServer().await();
     }
 }
